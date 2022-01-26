@@ -118,6 +118,34 @@ class PasswordReset extends Component {
             }
         }).finally(this.setState({error: ''}));
     };
+    handleEmail = (e) => {
+        let value = e.target.value;
+        this.setState(prevState => ({
+            user: {
+                ...prevState.user, email: value
+            }
+        }));
+    };
+    handlePassword = (e) => {
+        let value = e.target.value;
+        this.setState(prevState => ({
+            user: {
+                ...prevState.user, password: value
+            }
+        }));
+    };
+
+    handlePasswordConfirm = (e) => {
+        let value = e.target.value;
+        this.setState(prevState => ({
+            user: {
+                ...prevState.user, password_confirmation: value
+            }
+        }));
+    };
+    TransitionUp = (props) => {
+        return <Slide {...props} direction="up"/>;
+    };
 
     render() {
         const {error, errorMessage, formSubmitting, isReset, message} = this.state;

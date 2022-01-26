@@ -110,7 +110,13 @@ class PasswordEmail extends Component {
         }
         }).finally(this.setState({error: ''}));
     };
-    
+    handleEmail = (e) => {
+        let value = e.target.value;
+        this.setState({email: value});
+    };
+    TransitionUp = (props) => {
+        return <Slide {...props} direction="up" />;
+    };
     render() {
         const { error,errorMessage,formSubmitting,message,user,open} = this.state;
         let arr = [];
