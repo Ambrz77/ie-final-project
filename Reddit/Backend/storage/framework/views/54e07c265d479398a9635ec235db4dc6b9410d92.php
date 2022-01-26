@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
+
+    <title><?php echo e(config('app.name')); ?></title>
+    <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link href="<?php echo e(asset('css/manifest.json')); ?>" rel="manifest">
+    <!-- Styles -->
+    <link href="<?php echo e(asset('css/style.css')); ?>" rel="stylesheet">
+</head>
+<body dir="rtl">
+<div id="index"></div>
+<script src="<?php echo e(asset('js/app.js')); ?>"></script>
+<script>
+//     if ('serviceWorker' in navigator) {
+// navigator.serviceWorker.register('./service-worker.js').then(function(reg) {
+//     console.log('Successfully registered service worker', reg);
+// }).catch(function(err) {
+//     console.warn('Error whilst registering service worker', err);
+// });
+// }
+
+    // Pusher.logToConsole = true;
+    //
+    // window.Echo = new Echo({
+    //     broadcaster: 'pusher',
+    //     key: 'a95352457d4ea050c583',
+    //     cluster: 'ap2',
+    //     encrypted: true,
+    //     logToConsole: true
+    // });
+
+    // Echo.channel('comment')
+    //     .listen('NewCommentNotification', (e) => {
+    //         alert(e.message.message);
+    //     });
+</script>
+</body>
+</html>
+<?php /**PATH /Users/amir/PhpstormProjects/note/resources/views/index.blade.php ENDPATH**/ ?>
