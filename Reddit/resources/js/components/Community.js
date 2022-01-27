@@ -2,11 +2,15 @@ import React, {Component} from 'react'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
 import withStyles from "@material-ui/core/styles/withStyles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Box from "@material-ui/core/Box";
 import AppBar from "@material-ui/core/AppBar/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
+import ListSubheader from "@material-ui/core/ListSubheader";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import List from "@material-ui/core/List";
 import AutorenewIcon from '@material-ui/icons/Autorenew';
@@ -16,6 +20,7 @@ import TextField from "@material-ui/core/TextField";
 import {withRouter} from "react-router-dom";
 import Fab from "@material-ui/core/Fab";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
+import Header from "./Header";
 
 const useStyles = theme => ({
     root: {
@@ -24,6 +29,11 @@ const useStyles = theme => ({
         left: theme.spacing(2),
         zIndex:10000
     },
+    paper: {
+        paddingBottom: 50,
+        height: '100%',
+        overflow: 'auto',
+    },
     search: {
         paddingTop: 8,
     },
@@ -31,12 +41,22 @@ const useStyles = theme => ({
         top: 'auto',
         bottom: 0,
     },
+    dateEvent:{
+      padding:8,
+      fontSize:12,
+      textAlign: 'end'
+    },
     searchItem: {
         paddingLeft: 2,
         paddingRight: 2,
     },
     gutters:{
         paddingRight: 0
+    },
+    subheader: {
+        textAlign: 'center',
+        backgroundColor: '#eee',
+        lineHeight: '36px'
     },
     inline: {
         display: 'flex',
@@ -135,6 +155,14 @@ class Home extends Component {
             }
         }).finally(this.setState({error: ''}));
     };
+    loadMoreItems = (community) => {
+        // let node = event.target;
+        // const bottom = node.scrollHeight - node.scrollTop === node.clientHeight;
+        if (this.state.hasMoreItem) {
+            this.setState({isLoadMore:true});
+            this.getData();
+        }
+    };
 
     handleData = (data) => {
         let {community,hasMoreItem} = this.state;
@@ -161,13 +189,15 @@ class Home extends Component {
             });
         },1000)
     };
-    
+
+
     render() {
         const {classes} = this.props;
         let {community, isLoading,isFirstRun,isLoadMore} = this.state;
         return (
             <React.Fragment>
                 <CssBaseline/>
+                <Header title={strings.COMMUNITIES} />
                 {!isFirstRun ? <Grid container className={classes.search}>
                     <Grid item xs={12} className={classes.searchItem}>
                         <TextField
@@ -186,9 +216,17 @@ class Home extends Component {
                 {!isLoading && !community.length ? <Box className={classes.box}>
                     <Typography>{strings.CONVERSION_NOT_FOUND}</Typography>
                 </Box> : null}
+                {/*<Paper onScroll={this.loadMoreItems} className={classes.paper} elevation={0}>*/}
                 <List className={classes.paper}>
                     {community.map((item, index) => (
-                        <Zoom key={item.id} in={true}></Zoom>
+                        <Zoom key={item.id} in={true}>
+                            <Paper>
+                                <ListItem divider button onClick={() => this.handleCommunity(item)} classes={{gutters: classes.gutters}}>
+                                    <ListItemText classes={{secondary: classes.inline}}
+                                                  primary={<Typography className={classes.primary} variant={"h6"}>{item.name}</Typography>}/>
+                                </ListItem>
+                            </Paper>
+                        </Zoom>
                     ))}
                     {this.state.hasMoreItem ?  <Box display="flex" justifyContent="center" m={2}>
                         {isLoadMore ? <CircularProgress size={24} color="secondary"/> :
@@ -208,6 +246,7 @@ class Home extends Component {
                         </Grid>
                     </Toolbar>
                 </AppBar> : null}
+                {/*</Paper>*/}
                 {isLoading}
                 <ScrollTop {...this.props}>
                 <Fab color="secondary" size="small" aria-label="scroll back to top">
