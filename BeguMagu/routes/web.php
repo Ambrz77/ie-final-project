@@ -17,7 +17,15 @@ use Morilog\Jalali\Jalalian;
 
 //Auth::routes();
 
-Route::view('/', 'welcome');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 
-
+Route::view('/{path?}', 'index');
+Route::view('/password/email', 'index');
+Route::view('/password/reset/{token}', 'index');
+Route::view('/community/{path?}/{title?}', 'index');
+Route::view('/event/{path?}', 'index');
+Route::view('/comment/create/{path?}', 'index');
+Route::view('/editEvent/{event}', 'index');
+Route::view('/editCommunity/{community}', 'index');
+//Route::view('/event/{event}/edit', 'index');
