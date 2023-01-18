@@ -1,4 +1,4 @@
-# "BeguMagu Community Website" - Internet Engineering Final Project
+# "BeguMagu" Community Website - Internet Engineering Final Project
 
 ## Installation
 
